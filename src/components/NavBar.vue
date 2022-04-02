@@ -36,7 +36,8 @@
         >
           <span class="w-full leading-0 font-bold"> {{ i + 1 }}</span>
         </div>
-        <div class="text-xs lg:text-sm font-medium">{{ step.name }}</div>
+
+        <div v-once class="text-xs lg:text-sm font-medium">{{ step.name }}</div>
       </RouterLink>
     </div>
   </div>

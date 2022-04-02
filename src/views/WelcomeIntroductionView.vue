@@ -5,17 +5,17 @@
     <h1 class="text-xl font-bold">Hi and Welcome to Wise-Pay.</h1>
 
     <h2>
-      CompanyName has invited you to join the simplest
+      {{ CompanyName }} has invited you to join the simplest
       <span class="underline underline-offset-1">set and forget</span> payment
       system.
     </h2>
 
     <div class="text-sm flex flex-col space-y-6">
       <p>
-        At CompanyName we're always looking for opportunities to innovate and
-        make things easier for our customers, which is why we're thrilled to be
-        partnering with Wise-Pay and AccountMerchantProvider for all Credit Card
-        and ACH/Bank Debit payments.
+        At {{ CompanyName }} we're always looking for opportunities to innovate
+        and make things easier for our customers, which is why we're thrilled to
+        be partnering with Wise-Pay and {{ AccountMerchantProvider }} for all
+        Credit Card and ACH/Bank Debit payments.
       </p>
 
       <p>
@@ -24,16 +24,16 @@
         transparent fees and surcharges.
         <br />
         All our invoices are paid via Wise-Pay and settled via
-        AccountMerchantProvider's secure payment platform
+        {{ AccountMerchantProvider }}'s secure payment platform
       </p>
     </div>
 
-    <div class="text-sm flex flex-col space-y-6">
+    <div v-once class="text-sm flex flex-col space-y-6">
       <div class="font-bold">With Wise-Pay, you can log in to:</div>
 
       <ul class="ml-4">
         <li
-          v-for="(list, i) in featureList"
+          v-for="(list, i) in featureContent"
           :key="i"
           class="flex items-start space-x-2"
         >
@@ -59,14 +59,12 @@
 </template>
 
 <script setup>
-const featureList = [
-  "View and download invoices",
-  "Securely store your preferred payment methods for ease of payment",
-  "Easily pay for invoices using your securely stored Credit Card or Bank Account",
-  "Set up Automatic Payments allowing you to 'set and forget', where your payments are then deducted from your nominated stored payment method on the invoice due date",
-  "Schedule your invoices to be paid at a future date",
-  "Save Time and bulk pay for invoices",
-];
+import { storeToRefs } from "pinia";
+import { useWelcomeStorage } from "../stores/welcome";
+
+const welcomeStorage = useWelcomeStorage();
+const { featureContent, CompanyName, AccountMerchantProvider } =
+  storeToRefs(welcomeStorage);
 </script>
 
 <style></style>
